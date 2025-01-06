@@ -1,0 +1,56 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+description: snakemake configuration file
+
+type: object
+
+properties:
+  conda:
+    type: object
+    properties:
+      activate:
+        type: string
+      basic:
+        type: string
+    required:
+      - activate
+      - basic
+
+  database:
+    type: object
+    properties:
+      acc_type:
+        type: string
+      datasets:
+        type: string
+    required:
+      - acc_type
+      - datasets
+
+  samples:
+    type: array
+    items:
+      type: string
+    minItems: 1
+    uniqueItems: true
+
+  threads:
+    type: object
+    properties:
+      high:
+        type: integer
+      low:
+        type: integer
+    required:
+      - high
+      - low
+
+  workdir:
+    type: string
+
+required:
+  - conda
+  - database
+  - samples
+  - threads
+  - workdir

@@ -1,0 +1,11 @@
+conda:
+  activate: /home/mengxf/miniforge3/bin/activate
+  basic: basic
+database: /data/mengxf/Database/genome/HBV/BVBRC/BVBRC_genome_sequence.fasta
+samples:
+- BD205
+- BD335
+threads:
+  high: 32
+  low: 8
+workdir: /data/mengxf/Project/KML241212_HBV_WGS/result/241217
