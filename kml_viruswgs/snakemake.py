@@ -5,6 +5,7 @@ import logging
 from kml_viruswgs import get_conda_env_dict
 from kml_viruswgs import get_threads_dict
 from kml_viruswgs import get_database_dict
+from kml_viruswgs import get_software_dict
 
 
 def create_snakemake_configfile(sample_names, workdir):
@@ -19,7 +20,6 @@ def create_snakemake_configfile(sample_names, workdir):
     dir_temp = Path(workdir).joinpath('.temp')
     dir_temp.mkdir(exist_ok=True, parents=True)
     db_dict = get_database_dict()
-
     dict_smk = {
         'workdir': workdir,
         'samples': sample_names,
@@ -28,8 +28,8 @@ def create_snakemake_configfile(sample_names, workdir):
                      'hbvtype': db_dict['hbvtype']},
         'threads': get_threads_dict(),
         'conda': get_conda_env_dict(),
+        'software': get_software_dict(),
     }
-
     with open(f'{workdir}/.temp/snakemake.yaml', 'w') as f:
         yaml.dump(dict_smk, f)
 

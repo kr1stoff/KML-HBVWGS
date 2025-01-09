@@ -9,7 +9,8 @@ rule gene_aa_mutation:
     benchmark:
         "logs/aamut/{sample}_gene_aa_mutation.bm"
     params:
-        extra=config["database"]["hbvtype"]["embl"],
+        embl=config["database"]["hbvtype"]["embl"],
+        mafft=config["software"]["mafft"]
     conda:
         config["conda"]["python"]
     script:

@@ -3,8 +3,8 @@ from kml_viruswgs import get_sample_names_by_samptab
 from kml_viruswgs import run_snakemake
 
 
-work_dir = '/data/mengxf/Project/KML241212_HBV_WGS/result/25010801'
-sample_table = '/data/mengxf/Project/KML241212_HBV_WGS/input/input250108.tsv'
+work_dir = '/data/mengxf/Project/KML241212_HBV_WGS/result/25010802'
+sample_table = '/data/mengxf/Project/KML241212_HBV_WGS/input/input.tsv'
 
 
 def test_create():

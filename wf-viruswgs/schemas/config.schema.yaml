@@ -65,6 +65,12 @@ properties:
   workdir:
     type: string
 
+  software:
+    type: object
+    properties:
+      mafft:
+        type: string
+
 required:
   - conda
   - database

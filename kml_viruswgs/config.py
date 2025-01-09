@@ -12,10 +12,8 @@ def get_conda_env_dict() -> dict:
     """
     logging.info('获取环境字典')
     yaml_conda_env = Path(__file__).resolve().parents[1].joinpath('config/conda.yaml')
-
     with open(yaml_conda_env) as f:
         dict_conda_env = yaml.safe_load(f)
-
     return dict_conda_env
 
 
@@ -30,7 +28,6 @@ def get_threads_dict() -> dict:
     high_threads = math.floor(max_threads / 2)
     low_threads = math.floor(high_threads / 4)
     dict_thr = {'high': high_threads, 'low': low_threads, 'max': max_threads}
-
     return dict_thr
 
 
@@ -41,8 +38,18 @@ def get_database_dict() -> dict:
     """
     logging.info('获取数据库字典')
     yaml_database = Path(__file__).resolve().parents[1].joinpath('config/database.yaml')
-
     with open(yaml_database) as f:
         dict_database = yaml.safe_load(f)
-
     return dict_database
+
+
+def get_software_dict() -> dict:
+    """
+    获取软件字典
+    :return:    软件字典
+    """
+    logging.info('获取软件字典')
+    yaml_software = Path(__file__).resolve().parents[1].joinpath('config/software.yaml')
+    with open(yaml_software) as f:
+        dict_software = yaml.safe_load(f)
+    return dict_software
