@@ -1,0 +1,23 @@
+# 需要 bwa 先建索引
+bvbrc: /data/mengxf/Database/genome/HBV/BVBRC/BVBRC_genome_sequence.fasta
+comparison: /data/mengxf/Database/genome/HBV/BVBRC/accession_type_comparison.json
+# 分型明细
+hbvtype:
+  genome:
+    A: /data/mengxf/Database/genome/HBV/TypeRef/FASTA/X02763.fa
+    B: /data/mengxf/Database/genome/HBV/TypeRef/FASTA/AB219428.fa
+    C: /data/mengxf/Database/genome/HBV/TypeRef/FASTA/GQ924620.fa
+    D: /data/mengxf/Database/genome/HBV/TypeRef/FASTA/AF121240.fa
+    E: /data/mengxf/Database/genome/HBV/TypeRef/FASTA/AB106564.fa
+    F: /data/mengxf/Database/genome/HBV/TypeRef/FASTA/AY090458.fa
+    G: /data/mengxf/Database/genome/HBV/TypeRef/FASTA/AF160501.fa
+    H: /data/mengxf/Database/genome/HBV/TypeRef/FASTA/FJ356716.fa
+  embl:
+    A: /data/mengxf/Database/genome/HBV/TypeRef/EMBL_flat_file/X02763_entry.txt
+    B: /data/mengxf/Database/genome/HBV/TypeRef/EMBL_flat_file/AB219428_entry.txt
+    C: /data/mengxf/Database/genome/HBV/TypeRef/EMBL_flat_file/GQ924620_entry.txt
+    D: /data/mengxf/Database/genome/HBV/TypeRef/EMBL_flat_file/AF121240_entry.txt
+    E: /data/mengxf/Database/genome/HBV/TypeRef/EMBL_flat_file/AB106564_entry.txt
+    F: /data/mengxf/Database/genome/HBV/TypeRef/EMBL_flat_file/AY090458_entry.txt
+    G: /data/mengxf/Database/genome/HBV/TypeRef/EMBL_flat_file/AF160501_entry.txt
+    H: /data/mengxf/Database/genome/HBV/TypeRef/EMBL_flat_file/FJ356716_entry.txt

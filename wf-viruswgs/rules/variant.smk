@@ -1,7 +1,7 @@
 rule bedtools_maskfasta:
     input:
         low_depth=rules.low_depth_region.output,
-        raw_ref=rules.find_ref.output.ref,
+        raw_ref=rules.find_ref.output,
     output:
         "variants/{sample}.masked.fa",
     log:

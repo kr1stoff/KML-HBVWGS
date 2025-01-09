@@ -4,9 +4,10 @@ from subprocess import run
 import logging
 from kml_viruswgs import get_conda_env_dict
 from kml_viruswgs import get_threads_dict
+from kml_viruswgs import get_database_dict
 
 
-def create_snakemake_configfile(sample_names, workdir, database, acc_type):
+def create_snakemake_configfile(sample_names, workdir):
     """
     创建 snakemake 配置文件
     :param sample_names:    样本名列表
@@ -17,11 +18,14 @@ def create_snakemake_configfile(sample_names, workdir, database, acc_type):
     workdir = str(Path(workdir).resolve())
     dir_temp = Path(workdir).joinpath('.temp')
     dir_temp.mkdir(exist_ok=True, parents=True)
+    db_dict = get_database_dict()
 
     dict_smk = {
         'workdir': workdir,
         'samples': sample_names,
-        'database': {'datasets': database, 'acc_type': acc_type},
+        'database': {'datasets': db_dict['bvbrc'],
+                     'acc_type': db_dict['comparison'],
+                     'hbvtype': db_dict['hbvtype']},
         'threads': get_threads_dict(),
         'conda': get_conda_env_dict(),
     }
@@ -41,7 +45,7 @@ def run_snakemake(workdir):
     cores = get_threads_dict()['max']
     snakefile = Path(__file__).resolve().parents[1].joinpath('wf-viruswgs/Snakefile')
     configfile = f'{workdir}/.temp/snakemake.yaml'
-    logfile = f'{workdir}/.log/snakemake.log'
+    logfile = f'{workdir}/.temp/snakemake.log'
 
     cml = f"""
     source {activate} snakemake

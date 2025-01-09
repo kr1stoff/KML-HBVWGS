@@ -53,7 +53,7 @@ rule bcftools_consensus:
         extra="--haplotype A",  # optional parameters for bcftools consensus
     shell:
         """
-        awk '/>/ {{print; next}} {{gsub(/[rywskmhbvd]/,"N"); print}}' {input.ref} > {output.noIUPAC} 2> {log}
+        awk '/>/ {{print; next}} {{gsub(/[rywskmhbvdRYWSKMHBVD]/,"N"); print}}' {input.ref} > {output.noIUPAC} 2> {log}
         bcftools consensus {params.extra} -p {wildcards.sample}_ -f {output.noIUPAC} -o {output.cons1} {input.vcf} 2>> {log}
         sed 's/_.*//' {output.cons1} > {output.cons2} 2>> {log}
         """

@@ -4,7 +4,6 @@ import sys
 sys.stderr = open(snakemake.log[0], "w")
 
 
-print(snakemake.input)
 depth_file = snakemake.input[0]
 vtype_file = snakemake.input[1]
 name = snakemake.params.name

@@ -12,9 +12,12 @@ properties:
         type: string
       basic:
         type: string
+      python:
+        type: string
     required:
       - activate
       - basic
+      - python
 
   database:
     type: object
@@ -23,9 +26,20 @@ properties:
         type: string
       datasets:
         type: string
+      hbvtype:
+        type: object
+        embl:
+          type: object
+          additionalProperties:
+            type: string
+        genome:
+          type: object
+          additionalProperties:
+            type: string
     required:
       - acc_type
       - datasets
+      - hbvtype
 
   samples:
     type: array
@@ -41,9 +55,12 @@ properties:
         type: integer
       low:
         type: integer
+      max:
+        type: integer
     required:
       - high
       - low
+      - max
 
   workdir:
     type: string

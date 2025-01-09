@@ -14,12 +14,12 @@ include: "rules/fastqc.smk"
 include: "rules/fastp.smk"
 include: "rules/multiqc.smk"
 include: "rules/find.smk"
-include: "rules/type.smk"
 include: "rules/align.smk"
 include: "rules/depth.smk"
 include: "rules/variant.smk"
 include: "rules/consensus.smk"
 include: "rules/summary.smk"
+include: "rules/aa_mut.smk"
 
 
 rule all:
@@ -33,3 +33,4 @@ rule all:
         expand("variants/{sample}.tsv", sample=config["samples"]),
         expand("consensus/{sample}.consensus.fa", sample=config["samples"]),
         "summary/all.summary.tsv",
+        expand("aamut/{sample}.tsv", sample=config["samples"]),

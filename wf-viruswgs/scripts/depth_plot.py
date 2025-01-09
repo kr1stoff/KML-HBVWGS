@@ -11,7 +11,7 @@ sys.stderr = open(snakemake.log[0], "w")
 
 def get_plot_title(df) -> tuple:
     """获取登录号和覆盖度, 输出图标的标题"""
-    acc = str(df.iloc[0, 0]).replace('accn|', '')
+    acc = str(df.iloc[0, 0])
     cov = '{:.2%}'.format(len(df[df['Depth'] > 0])/df.shape[0])
     return f'{acc} Coverage Chart (Coverage: {cov})'
 

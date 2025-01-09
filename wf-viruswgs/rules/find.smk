@@ -42,32 +42,57 @@ rule samtools_coverage_datasets:
         "samtools coverage {input} >{output}"
 
 
-rule find_ref:
+rule find_most_similar:
     input:
         rules.samtools_coverage_datasets.output,
     output:
-        most_similar="find/{sample}_most_similar.id",
-        ref="find/{sample}_ref.fa",
+        "find/{sample}_most_similar.id",
+    log:
+        "logs/find/{sample}_find_most_similar.log",
+    benchmark:
+        "logs/find/{sample}_find_most_similar.bm"
+    conda:
+        config["conda"]["python"]
+    script:
+        "../scripts/find_most_similar.py"
+
+
+rule virus_type:
+    input:
+        most_similar=rules.find_most_similar.output[0],
+        acc_type=config["database"]["acc_type"],
+    output:
+        "type/{sample}.type",
+    log:
+        "logs/type/{sample}.virus_type.log",
+    benchmark:
+        "logs/type/{sample}.virus_type.bm"
+    script:
+        "../scripts/virus_type.py"
+
+
+rule find_ref:
+    input:
+        rules.virus_type.output,
+    output:
+        "find/{sample}_ref.fa",
+    params:
+        hbvtype=config["database"]["hbvtype"],
     log:
         "logs/find/{sample}_find_ref.log",
     benchmark:
         "logs/find/{sample}_find_ref.bm"
     conda:
-        config["conda"]["basic"]
-    params:
-        extra="-k coverage:nr -k numreads:nr",
-    shell:
-        """
-        csvtk -t -C '' sort {params.extra} {input} | sed '1d' | head -n1 | cut -f1 >{output.most_similar}
-        seqtk subseq {config[database][datasets]} {output.most_similar} >{output.ref}
-        """
+        config["conda"]["python"]
+    script:
+        "../scripts/find_ref.py"
 
 
 rule ref_index:
     input:
-        rules.find_ref.output.ref,
+        rules.find_ref.output[0],
     output:
-        multiext(rules.find_ref.output.ref, ".amb", ".ann", ".bwt", ".pac", ".sa"),
+        multiext(rules.find_ref.output[0], ".amb", ".ann", ".bwt", ".pac", ".sa"),
     log:
         "logs/find/{sample}_ref.log",
     benchmark:

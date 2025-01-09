@@ -1,2 +1,3 @@
 activate: /home/mengxf/miniforge3/bin/activate
 basic: basic
+python: python3.12

@@ -32,3 +32,17 @@ def get_threads_dict() -> dict:
     dict_thr = {'high': high_threads, 'low': low_threads, 'max': max_threads}
 
     return dict_thr
+
+
+def get_database_dict() -> dict:
+    """
+    获取数据库字典
+    :return:    数据库字典
+    """
+    logging.info('获取数据库字典')
+    yaml_database = Path(__file__).resolve().parents[1].joinpath('config/database.yaml')
+
+    with open(yaml_database) as f:
+        dict_database = yaml.safe_load(f)
+
+    return dict_database
